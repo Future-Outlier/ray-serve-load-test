@@ -11,6 +11,7 @@ spec:
       intervalSeconds: 30
       maxSurgePercent: 20
   serveConfigV2: |
+    proxy_location: HeadOnly
     applications:
       - name: stress_test_app
         import_path: stress_test_serve.app
@@ -41,8 +42,8 @@ spec:
               image: rayproject/ray:2.45.0
               resources:
                 requests:
-                  cpu: "2"
-                  memory: "2Gi"
+                  cpu: "1"
+                  memory: "1Gi"
               ports:
                 - containerPort: 6379
                   name: gcs-server
@@ -69,5 +70,5 @@ spec:
                       command: ["/bin/sh", "-c", "ray stop"]
                 resources:
                   requests:
-                    cpu: "2"
-                    memory: "2Gi"
+                    cpu: "1"
+                    memory: "1Gi"

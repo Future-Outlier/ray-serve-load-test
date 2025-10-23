@@ -9,9 +9,9 @@ import asyncio
 # serve.start()
 
 @serve.deployment(
-    num_replicas=8,
-    max_ongoing_requests=5000,  # Maximum 5000 concurrent requests per replica
-    ray_actor_options={"num_cpus": 1}
+    # num_replicas=8,
+    # max_ongoing_requests=5000,  # Maximum 5000 concurrent requests per replica
+    # ray_actor_options={"num_cpus": 1}
 )
 class SimpleDeployment:
     """Simple deployment that directly returns results"""
