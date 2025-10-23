@@ -4,9 +4,9 @@ from starlette.requests import Request
 import asyncio
 
 # Initialize Ray cluster with 8 CPUs
-ray.init(num_cpus=8)
+# ray.init(num_cpus=8)
 
-serve.start()
+# serve.start()
 
 @serve.deployment(
     num_replicas=8,
