@@ -1,7 +1,6 @@
 import ray
 from ray import serve
 from starlette.requests import Request
-import asyncio
 
 # Initialize Ray cluster with 8 CPUs
 # ray.init(num_cpus=8)
@@ -30,20 +29,20 @@ class SimpleDeployment:
 
 # Deploy the application
 app = SimpleDeployment.bind()
-serve.run(app, route_prefix="/")
+# serve.run(app, route_prefix="/")
 
-print("=" * 80)
-print("Ray Serve is running!")
-print("Visit http://localhost:8000/ to test")
-print("Dashboard: http://localhost:8265")
-print("=" * 80)
+# print("=" * 80)
+# print("Ray Serve is running!")
+# print("Visit http://localhost:8000/ to test")
+# print("Dashboard: http://localhost:8265")
+# print("=" * 80)
 
-# Keep running
-import time
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    print("\nShutting down...")
-    serve.shutdown()
-    ray.shutdown()
+# # Keep running
+# import time
+# try:
+#     while True:
+#         time.sleep(1)
+# except KeyboardInterrupt:
+#     print("\nShutting down...")
+#     serve.shutdown()
+#     ray.shutdown()

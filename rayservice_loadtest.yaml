@@ -11,27 +11,19 @@ spec:
       intervalSeconds: 30
       maxSurgePercent: 20
   serveConfigV2: |
-    proxy_location: HeadOnly
     applications:
       - name: stress_test_app
-        import_path: stress_test_serve.app
-        route_prefix: /
+        import_path: stress_test_serve:app
+        route_prefix: /test
         runtime_env:
           working_dir: "https://github.com/future-outlier/ray-serve-load-test/archive/main.zip"
         deployments:
           - name: SimpleDeployment
-            autoscaling_config:
-              min_replicas: 1
-              max_replicas: 2
-              target_ongoing_requests: 500
-              max_ongoing_requests: 1000
-              metrics_interval_s: 0.1      
-              upscale_delay_s: 0.5
-              downscale_delay_s: 3
+            num_replicas: 1
             ray_actor_options:
-              num_cpus: 1
+              num_cpus: 0.5
   rayClusterConfig:
-    rayVersion: "2.45.0"
+    rayVersion: "2.49.2"
     enableInTreeAutoscaling: true
     headGroupSpec:
       rayStartParams: {}
@@ -39,7 +31,7 @@ spec:
         spec:
           containers:
             - name: ray-head
-              image: rayproject/ray:2.45.0
+              image: rayproject/ray:2.49.2
               resources:
                 requests:
                   cpu: "1"
@@ -63,7 +55,7 @@ spec:
           spec:
             containers:
               - name: ray-worker
-                image: rayproject/ray:2.45.0
+                image: rayproject/ray:2.49.2
                 lifecycle:
                   preStop:
                     exec:
@@ -72,3 +64,4 @@ spec:
                   requests:
                     cpu: "1"
                     memory: "1Gi"
+
